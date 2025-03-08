@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Día, Cami!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #FFB6C1;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            color: #D58D8D;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background: url('https://picsum.photos/1200/800') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: #fff;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery Styles */
+        .gallery {
+            padding: 4rem 2rem;
+            background-color: #FFC0CB;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #D58D8D;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 0.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            padding: 4rem 2rem;
+            background-color: #FFE4E1;
+        }
+
+        .timeline h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #D58D8D;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #D58D8D;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: #FFB6C1;
+            border: 4px solid #D58D8D;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: #fff;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Messages Styles */
+        .messages {
+            padding: 4rem 2rem;
+            background-color: #F8C8DC;
+            text-align: center;
+        }
+
+        .messages h2 {
+            margin-bottom: 2rem;
+            color: #D58D8D;
+        }
+
+        .message {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #D58D8D;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
+            .timeline-container::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 15px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        .slide-in {
+            animation: slideIn 1s ease-out;
+        }
+
+        /* Particle Effect */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="particles-js"></div>
+        <h1 class="fade-in">¡Feliz Día Cami!</h1>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content slide-in">
+            <h2>Celebrándote</h2>
+            <p>En este día especial, quiero celebrar a la mujer increíble que sos.</p>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <h2>Nuestras memorias</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img data-src="1.jpg" alt="Recuerdo 1" src="">
+                <div class="caption"></div>
+            </div>
+            <div class="gallery-item">
+                <img data-src="2.jpg" alt="Recuerdo 2" src="">
+                <div class="caption"></div>
+            </div>
+            <div class="gallery-item">
+                <img data-src="3.jpg" alt="Recuerdo 3" src="">
+                <div class="caption"></div>
+            </div>
+            <div class="gallery-item">
+                <img data-src="4.jpg" alt="Recuerdo 4" src="">
+                <div class="caption"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline">
+        <h2>Nuestro viaje</h2>
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Primer encuentro</h3>
+                    <p>El día que nuestras miradas se cruzaron y nuestra historia comenzó.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Primera cita</h3>
+                    <p>Una noche mágica que marcó el inicio de nuestra aventura.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Nuestro primer juego con baile</h3>
+                    <p>Explorando lugares nuevos y creando recuerdos duraderos juntos.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Avanzando juntos...</h3>
+                    <p>Comenzando un nuevo capítulo en un camino compartido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="messages">
+        <h2>Palabras del corazón</h2>
+        <div id="message-container"></div>
+    </section>
+
+    <footer>
+        <p>Hecho con amor para Cami ❤️</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // Efecto de partículas
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        // Animaciones de desplazamiento
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.timeline-item, .gallery-item');
+            elements.forEach(el => {
+                if (isElementInViewport(el)) {
+                    el.classList.add('fade-in');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScrollAnimations);
+        window.addEventListener('resize', handleScrollAnimations);
+        handleScrollAnimations();
+
+        // Animación de mensajes
+        const messages = [
+            "Tu sonrisa ilumina mi día.",
+            "Tu fortaleza me inspira.",
+            "Estoy agradecido por cada momento con vos.",
+            "Haces del mundo un lugar mejor.",
+            "Te amo."
+        ];
+
+        const messageContainer = document.getElementById('message-container');
+
+        function displayMessages() {
+            messages.forEach((message, index) => {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                messageElement.textContent = message;
+                messageContainer.appendChild(messageElement);
+
+                setTimeout(() => {
+                    messageElement.style.opacity = '1';
+                    messageElement.style.transform = 'translateY(0)';
+                }, index * 1000);
+            });
+        }
+
+        displayMessages();
+
+        // Manejo de errores
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.error("Ocurrió un error:", message, "en", source, ":", lineno);
+            return true;
+        };
+
+        // Optimización de rendimiento
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll('img');
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const image = entry.target;
+                            image.src = image.dataset.src;
+                            imageObserver.unobserve(image);
+                        }
+                    });
+                });
+
+                images.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            } else {
+                images.forEach(img => {
+                    img.src = img.dataset.src;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
